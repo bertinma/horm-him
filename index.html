@@ -1,0 +1,70 @@
+    <!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Votre Commande</title> 
+        <link href="index.css" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <div class="head">
+                <h1>How I Meet</h1>
+            </div>
+        </header>
+        <main>
+            <!-- <p>Votre Voyage</p> -->
+            <form autocomplete="off" action="connect_rds.php" method="POST">
+                <div class="formulaire">
+                    <!-- <fieldset> -->
+                        <p>
+                            <h3>Vous</h3>
+                        </p>
+                        <p>
+                            <input type="text" name="prenom" id="prenom" placeholder="Prénom" size="30" maxlength="40" required>
+                        </p>
+                        <p>
+                            <input type="text" name="nom" id="nom" placeholder="Nom" size="30" maxlength="40" required>
+                        </p>
+                        <p>
+                            <input type="email" name="email" id="email" placeholder="Email" size="30" maxlength="40" required>
+                        </p>
+                        <p>
+                            <input type="text" name="Adresse" id="Adresse" placeholder="Adresse" size="30" maxlength="60" required>
+                        </p>
+                        <p>
+                            <h3>Votre Commande</h3>
+                        </p>
+                        <p>
+                            <select id="photographe" name="photographe" required>
+                                <option value = "" selected disabled>Selectionner le photographe</option>
+                                <option>Marco</option>
+                                <option>Léo</option>
+                                <option>Alexandra</option>
+                                <option>Tatiana</option>
+                                <option>Jéremie</option>
+                                </select>
+                        </p>
+                        <p>
+                            <select id="Taille" name="Taille" required>
+                                <option value = "" selected disabled>Selectionner la taille</option>
+                                <option>A5</option>
+                                <option>A4</option>
+                                <option>A3</option>
+                            </select>
+                        </p>
+                        <p>
+                            <input type="checkbox" name="cadre" id="cadre" value="true"> 
+                            <label for="cadre">Ajouter un cadre (+ 5€)</label>
+                        </p>
+                        <p class="bouton">
+                            <input type="submit" value="Confirmer">
+                        </p>
+                    <!-- </fieldset> -->
+                </div>
+            </form>
+        </main>
+        <footer>
+            <!-- <p class="footer">How I Meet © 2023</p> -->
+        </footer>
+    </body>
+</html>
