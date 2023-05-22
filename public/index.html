@@ -13,29 +13,29 @@
         </header>
         <main>
             <!-- <p>Votre Voyage</p> -->
-            <form autocomplete="off" action="connect_rds.php" method="POST">
+            <form autocomplete="off" action="/submit-form" method="POST">
                 <div class="formulaire">
                     <!-- <fieldset> -->
                         <p>
                             <h3>Vous</h3>
                         </p>
                         <p>
-                            <input type="text" name="prenom" id="prenom" placeholder="Prénom" size="30" maxlength="40" required>
+                            <input type="text" name="firstName" id="firstName" placeholder="Prénom" size="30" maxlength="40" required>
                         </p>
                         <p>
-                            <input type="text" name="nom" id="nom" placeholder="Nom" size="30" maxlength="40" required>
+                            <input type="text" name="lastName" id="lastName" placeholder="Nom" size="30" maxlength="40" required>
                         </p>
                         <p>
                             <input type="email" name="email" id="email" placeholder="Email" size="30" maxlength="40" required>
                         </p>
                         <p>
-                            <input type="text" name="Adresse" id="Adresse" placeholder="Adresse" size="30" maxlength="60" required>
+                            <input type="text" name="address" id="address" placeholder="Adresse" size="30" maxlength="60" required>
                         </p>
                         <p>
                             <h3>Votre Commande</h3>
                         </p>
                         <p>
-                            <select id="photographe" name="photographe" required>
+                            <select id="photograph" name="photograph" required>
                                 <option value = "" selected disabled>Selectionner le photographe</option>
                                 <option>Marco</option>
                                 <option>Léo</option>
@@ -45,7 +45,7 @@
                                 </select>
                         </p>
                         <p>
-                            <select id="Taille" name="Taille" required>
+                            <select id="size" name="size" required>
                                 <option value = "" selected disabled>Selectionner la taille</option>
                                 <option>A5</option>
                                 <option>A4</option>
@@ -53,7 +53,7 @@
                             </select>
                         </p>
                         <p>
-                            <input type="checkbox" name="cadre" id="cadre" value="true"> 
+                            <input type="checkbox" name="frame" id="frame" value="true"> 
                             <label for="cadre">Ajouter un cadre (+ 5€)</label>
                         </p>
                         <p class="bouton">
