@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Order Success</title>
+    <link href="success.css" rel="stylesheet">
+</head>
+<body>
+    <h1>Votre commande est confirmée ! :-)</h1>
+    <h3>Commande #<span id="order-id"></span></h3>
+    <img src="IMG_00143D3301A1-1.jpeg" alt="HIM">
+
+    <script>
+        // Retrieve the order ID from the URL query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderId = urlParams.get('order');
+
+        // Display the order ID on the page
+        document.getElementById('order-id').textContent = orderId;
+    </script>
+</body>
+</html>

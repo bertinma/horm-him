@@ -1,0 +1,30 @@
+@font-face {
+    font-family: Wellingtons;
+    src: url('fonts/tt_wellingtons/TT Wellingtons Trial ExtraLight.otf');
+}
+
+@font-face {
+    font-family: WellingtonsBold;
+    src: url('fonts/tt_wellingtons/TT Wellingtons Trial ExtraBold.otf');
+}
+
+
+* {
+    font-family: "Wellingtons";
+}
+
+
+body {
+    padding-top: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+img{
+    width: 30%;
+    padding-top: 100px;
+    /* height: 100%; */
+    object-fit: cover;
+}
