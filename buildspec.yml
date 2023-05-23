@@ -1,0 +1,20 @@
+version: 0.2
+
+phases: 
+  build:
+    commands:
+      - echo " Build started ! "
+      - npm install mysql2 express body-parser
+  post_build:
+    commands:
+      - echo "This is a test"
+artifacts:
+  files:
+    - app.js
+    - package.json 
+    - public/**
+    - node_modules/**
+
+
+
+
