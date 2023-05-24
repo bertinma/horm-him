@@ -2,7 +2,7 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "4.0.1"
 
-  name = "01_static_site_hosting_vpc"
+  name = "horm_him_vpc"
   cidr = var.vpc_cidr_block
 
   azs             = var.aws_availability_zone_names
