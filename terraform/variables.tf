@@ -17,3 +17,8 @@ variable "default_tags" {
 variable "bucket_name" {
   type = string
 }
+
+variable "csv_file_name" {
+  type    = string
+  default = "orders.csv"
+}

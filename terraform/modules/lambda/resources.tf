@@ -1,5 +1,5 @@
 resource "aws_iam_role" "lambda_role" {
-  name = "vaultwarden_lambda_role"
+  name = "horm_him_lambda_role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -15,32 +15,41 @@ resource "aws_iam_role" "lambda_role" {
   })
 
   inline_policy {
-    name = "vaultwarden_lambda_policy"
+    name = "horm_him_lambda_policy"
     policy = jsonencode({
       Version = "2012-10-17"
       Statement = [
         {
           Action = [
-            "ecs:RunTask",
-            "ecs:ListTasks",
-            "ecs:DescribeTasks",
-            "ecs:StopTask",
-            "ecs:"
+            "s3:*"
           ]
-          Effect   = "Allow"
-          Resource = "*"
+          Effect = "Allow"
+          Resource = [
+            "${var.s3_bucket_arn}/*",
+            "${var.s3_bucket_arn}"
+          ]
         },
         {
           Action = [
-            "ec2:DescribeNetworkInterfaces"
+            "logs:CreateLogStream",
+            "logs:PutLogEvents"
           ]
-          Effect   = "Allow"
-          Resource = "*"
+          Effect = "Allow"
+          Resource = "arn:aws:logs:*:*:*"
         }
       ]
     })
   }
 }
+
+resource "aws_cloudwatch_log_group" "this" {
+  name              = "/aws/lambda/${aws_lambda_function.this.function_name}"
+  retention_in_days = 7
+  lifecycle {
+    prevent_destroy = false
+  }
+}
+
 
 data "archive_file" "zip_code" {
   type        = "zip"
@@ -52,12 +61,23 @@ data "archive_file" "zip_code" {
 resource "aws_lambda_function" "this" {
   depends_on    = [aws_iam_role.lambda_role, data.archive_file.zip_code]
   filename      = "${path.module}/${var.lambda_zip_filename}"
-  function_name = "vaultwarden_lambda_function"
+  function_name = "horm_him_lambda_function"
   role          = aws_iam_role.lambda_role.arn
   handler       = "lambda_.lambda_handler"
   timeout       = 60
+  layers = [
+    local.panda_layer_arn[var.aws_region]
+  ]
 
   runtime = var.python_runtime
+
+  environment {
+    variables = {
+      BUCKET_NAME = var.s3_bucket_name
+      FILE_NAME   = var.csv_file_name
+    }
+  }
+
 }
 
 resource "null_resource" "this" {
@@ -70,4 +90,9 @@ resource "null_resource" "this" {
     command    = "rm -rf ${path.module}/${self.triggers.lambda_zip_filename}"
     on_failure = continue
   }
+}
+
+resource "aws_lambda_function_url" "this" {
+  function_name      = aws_lambda_function.this.function_name
+  authorization_type = "NONE"
 }

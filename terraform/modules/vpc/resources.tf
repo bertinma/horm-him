@@ -8,11 +8,11 @@ resource "aws_flow_log" "this" {
 }
 
 resource "aws_cloudwatch_log_group" "this" {
-  name         = "/labs/01_static_site_hosting_vpc_flow_log"
+  name         = "01_static_site_hosting_vpc_flow_log"
   skip_destroy = false
   provisioner "local-exec" {
     when    = destroy
-    command = "aws logs delete-log-group --log-group-name ${self.name}"
+    command = "sleep 30 && aws logs delete-log-group --log-group-name ${self.name}"
 
   }
 
