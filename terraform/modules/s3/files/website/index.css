@@ -1,12 +1,12 @@
 @font-face {
   font-family: Wellingtons;
-  src: url('fonts/tt_wellingtons/TT Wellingtons Trial ExtraLight.otf');
+  src: url('tt_wellingtons/TT Wellingtons Trial ExtraLight.otf');
 }
 
 
 @font-face {
   font-family: WellingtonsBold;
-  src: url('fonts/tt_wellingtons/TT Wellingtons Trial ExtraBold.otf');
+  src: url('tt_wellingtons/TT Wellingtons Trial ExtraBold.otf');
 }
 
 
@@ -69,7 +69,7 @@ h3{
     margin-bottom:  -8px;
 }
 
-input[type=submit]{
+.button{
     background-color: #246684;
     color: rgba(256,256,256,0.7);
     border: 2px;

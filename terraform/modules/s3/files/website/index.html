@@ -4,89 +4,6 @@
         <meta charset="utf-8">
         <title>Votre Commande</title> 
         <link href="./index.css" rel="stylesheet">
-        <style>
-            @font-face {
-                font-family: Wellingtons;
-                src: url('tt_wellingtons/TT Wellingtons Trial ExtraLight.otf');
-              }
-              
-              
-              @font-face {
-                font-family: WellingtonsBold;
-                src: url('tt_wellingtons/TT Wellingtons Trial ExtraBold.otf');
-              }
-              
-              
-              
-              @import url("https://fonts.googleapis.com/css?family=Fira+Sans");
-              
-              * {
-                font-family: "Wellingtons";
-              }
-              
-              .head,
-              main,
-              footer {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-              }
-              
-              .head{
-                padding-left: 50px;
-              }
-              
-              footer{
-                padding-left: 5   0px;
-              }
-              
-              .formulaire{
-                  width: 100%;
-                  height: 40%;
-                  display: flex;
-                  flex-direction: column;
-                  justify-content: center;
-                  align-items: center;
-                  background-color: #f2f2f2;
-                  padding: 20px;
-                  border-radius: 10px;
-                  border: 1px solid #0000;
-                  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
-                  opacity: 0.65;
-              }
-              
-              p{
-                margin : 5px;
-              }
-              
-              h1{
-                  padding-top: 15px;
-                  font-size: 50px;
-                  color: #000;
-                }
-              
-              body {
-                  background-image: url("B054892-R1-10-24A_GRAY.JPG");
-                  background-size: cover;
-                  background-position: center;
-                  /* opacity: 0.7; Change transparency, where 1 is fully opaque and 0 is fully transparent */
-                }
-              
-              h3{
-                  margin-bottom:  -8px;
-              }
-              
-              input[type=submit]{
-                  background-color: #246684;
-                  color: rgba(256,256,256,0.7);
-                  border: 2px;
-                  border-radius: 8px;
-                  padding: 10px 40px 10px 40px;
-                  margin-top: 20px;
-                  width: 100%;
-                  font-size: 18px;
-              }
-        </style>
     </head>
     <body>
         <header>
@@ -96,7 +13,7 @@
         </header>
         <main>
             <!-- <p>Votre Voyage</p> -->
-            <form autocomplete="off" action="/submit-form" method="POST">
+            <form autocomplete="off" id="submit_btn">
                 <div class="formulaire">
                     <!-- <fieldset> -->
                         <p>
@@ -139,8 +56,8 @@
                             <input type="checkbox" name="frame" id="frame" value="true"> 
                             <label for="cadre">Ajouter un cadre (+ 5€)</label>
                         </p>
-                        <p class="bouton">
-                            <input type="submit" value="Confirmer">
+                        <p>
+                            <button class = "button" type="submit" value="Confirmer">Confirmer</button>
                         </p>
                 </div>
             </form>
