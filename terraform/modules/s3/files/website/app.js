@@ -25,7 +25,7 @@ async function submitForm(event){
     };
     
     console.log(event);
-    const response = await fetch('https://pu6djltkbwgnyg25to7crx3sba0skgrr.lambda-url.eu-west-3.on.aws/', {
+    const response = await fetch('https://cmvey3howualzox4o4kw3x5kkm0kkykn.lambda-url.eu-west-3.on.aws/', {
         method: 'POST',
         mode: "cors",
         headers: {

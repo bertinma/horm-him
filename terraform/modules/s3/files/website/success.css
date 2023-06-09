@@ -32,3 +32,9 @@ img{
     padding-top: 100px;
     object-fit: cover;
 }
+
+h1 {
+    font-size: 40px;
+    color: #000;
+    margin-inline: 80px;
+}

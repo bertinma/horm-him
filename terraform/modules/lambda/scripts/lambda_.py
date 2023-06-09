@@ -41,15 +41,34 @@ def lambda_handler(event, context) -> None:
     """
     AWS Lambda function handler
     """
+    
+    
     if event.get("isBase64Encoded"):
         user = json.loads(base64.b64decode(event["body"]))
     else:
-        user = event["body"]
-
-    response = s3_client.get_object(
-        Bucket=bucket_name, Key=file_name)
+        print(event)
+        user = json.loads(event["body"])
     
-    status = response.get("ResponseMetadata", {}).get("HTTPStatusCode")
+    
+    try:
+        response = s3_client.get_object(
+            Bucket=bucket_name, Key=file_name)
+        status = response.get("ResponseMetadata", {}).get("HTTPStatusCode")
+    except:
+        response = None
+        status = 500 
+        
+    print(user)
+    
+    first_name = user['first_name']
+    last_name = user['last_name']
+    email = user['email']
+    address = user['address']
+    photograph = user['photograph']
+    photo = user['picture']
+    size = user['size']
+    frame = user['frame']
+
     
     if status == 200:
         print(f"Successful S3 get_object response. Status - {status}")
@@ -59,29 +78,24 @@ def lambda_handler(event, context) -> None:
         # get order id by number of orders already created 
         order_id = len(orders_df) + 1
         
-        first_name = user['first_name']
-        last_name = user['last_name']
-        email = user['email']
-        address = user['address']
-        photograph = user['photograph']
-        size = user['size']
-        frame = user['frame']
         
         # add a Row 
-        orders_df = pd.concat([orders_df, pd.DataFrame([[order_id,first_name,last_name,email,address,photograph,size,frame]], columns = ["order_id","first_name","last_name","email","address","photograph","size","frame"])], ignore_index = True)
+        orders_df = pd.concat([orders_df, pd.DataFrame([[order_id,first_name,last_name,email,address,photograph,photo,size,frame]], columns = ["order_id","first_name","last_name","email","address","photograph","photo","size","frame"])], ignore_index = True)
         
-        with io.StringIO() as csv_buffer:
-            orders_df.to_csv(csv_buffer, index=False)
+    else:
+        order_id = 1
+        orders_df = pd.DataFrame([[order_id,first_name,last_name,email,address,photograph,photo,size,frame]], columns = ["order_id","first_name","last_name","email","address","photograph","photo","size","frame"])
 
-            response = s3_client.put_object(
-                Bucket=bucket_name, Key=file_name, Body=csv_buffer.getvalue()
-            )
+    with io.StringIO() as csv_buffer:
+        orders_df.to_csv(csv_buffer, index=False)
 
-            status = response.get("ResponseMetadata", {}).get("HTTPStatusCode")
+        response = s3_client.put_object(
+            Bucket=bucket_name, Key=file_name, Body=csv_buffer.getvalue()
+        )
 
-            if status == 200:
-                print(f"Successful S3 put_object response. Status - {status}")
-                return MyResponse.success(order_id)
+        status = response.get("ResponseMetadata", {}).get("HTTPStatusCode")
 
-            return MyResponse.error("Error :(")
-    return MyResponse.error("Error :(")
+        if status == 200:
+            print(f"Successful S3 put_object response. Status - {status}")
+            return MyResponse.success(order_id)
+        return MyResponse.error("Error :(")

@@ -1,5 +1,9 @@
 variable "vpc" {
   type = map(any)
+  default = {
+    name = "horm_him_vpc"
+    vpc_cidr_block = "172.29.0.0/16"
+  }
 }
 
 variable "aws_region" {
@@ -16,6 +20,7 @@ variable "default_tags" {
 
 variable "bucket_name" {
   type = string
+  default = "form-him-bucket"
 }
 
 variable "csv_file_name" {
