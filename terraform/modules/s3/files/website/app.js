@@ -11,8 +11,8 @@ async function submitForm(event){
     const email = formFields.email.value;
     const address = formFields.address.value;
     const photograph = formFields.photograph.value;
+    const picture = formFields.picture.value;
     const size = formFields.size.value;
-    const frame = formFields.frame.checked;
 
     const values = {
         "first_name" : firstName,
@@ -20,8 +20,8 @@ async function submitForm(event){
         "email" : email,
         "address" : address,
         "photograph" : photograph,
-        "size" : size,
-        "frame" : frame
+        "picture" : picture,
+        "size" : size
     };
     
     console.log(event);

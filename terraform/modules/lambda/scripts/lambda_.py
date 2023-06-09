@@ -67,7 +67,6 @@ def lambda_handler(event, context) -> None:
     photograph = user['photograph']
     photo = user['picture']
     size = user['size']
-    frame = user['frame']
 
     
     if status == 200:
@@ -80,11 +79,11 @@ def lambda_handler(event, context) -> None:
         
         
         # add a Row 
-        orders_df = pd.concat([orders_df, pd.DataFrame([[order_id,first_name,last_name,email,address,photograph,photo,size,frame]], columns = ["order_id","first_name","last_name","email","address","photograph","photo","size","frame"])], ignore_index = True)
+        orders_df = pd.concat([orders_df, pd.DataFrame([[order_id,first_name,last_name,email,address,photograph,photo,size]], columns = ["order_id","first_name","last_name","email","address","photograph","photo","size"])], ignore_index = True)
         
     else:
         order_id = 1
-        orders_df = pd.DataFrame([[order_id,first_name,last_name,email,address,photograph,photo,size,frame]], columns = ["order_id","first_name","last_name","email","address","photograph","photo","size","frame"])
+        orders_df = pd.DataFrame([[order_id,first_name,last_name,email,address,photograph,photo,size]], columns = ["order_id","first_name","last_name","email","address","photograph","photo","size"])
 
     with io.StringIO() as csv_buffer:
         orders_df.to_csv(csv_buffer, index=False)
